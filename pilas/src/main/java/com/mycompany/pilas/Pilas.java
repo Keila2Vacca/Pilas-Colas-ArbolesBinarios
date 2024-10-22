@@ -5,12 +5,12 @@ import javax.swing.JOptionPane;
 
 public class Pilas<T> {
 
-     private Object[] elementos;
+    private Object[] elementos;
     private int tope;
     private static final int CAPACIDAD_INICIAL = 10;
 
     // Constructor
-    public Pila() {
+    public Pilas() {
         elementos = new Object[CAPACIDAD_INICIAL];
         tope = -1; // La pila está vacía
     }

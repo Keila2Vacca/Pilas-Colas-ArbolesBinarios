@@ -1,5 +1,7 @@
 package com.mycompany.pilas;
 
+import javax.swing.JOptionPane;
+
 public class Inicio extends javax.swing.JFrame {
 
     private Pilas<String> historial = new Pilas<>();
@@ -8,8 +10,8 @@ public class Inicio extends javax.swing.JFrame {
 
     public Inicio() {
         initComponents();
-        ahead.setEnabled(false);
-        behind.setEnabled(false);
+        ahead.setEnabled(true);
+        behind.setEnabled(true);
         paginaActual = "Inicio";
     }
 
@@ -95,19 +97,30 @@ public class Inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void behindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_behindActionPerformed
-        // TODO add your handling code here:
+        if (!historial.isEmpty()) {
+            adelante.push(paginaActual);
+            paginaActual = historial.pop();
+        }else{
+            JOptionPane.showMessageDialog(null, "No hay más páginas atrás");
+        }
     }//GEN-LAST:event_behindActionPerformed
 
     private void aheadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aheadActionPerformed
-        // TODO add your handling code here:
+         JOptionPane.showInputDialog("Ingresar nombre del apartado: ");
+         if (!historial.isEmpty()) {
+            historial.push(paginaActual);
+            paginaActual = adelante.pop();
+        }else{
+            JOptionPane.showMessageDialog(null, "No hay más páginas adelante");
+        }
     }//GEN-LAST:event_aheadActionPerformed
 
     private void historyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyActionPerformed
-        // TODO add your handling code here:
+        historial.imprimir();
     }//GEN-LAST:event_historyActionPerformed
 
     private void currentPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_currentPageActionPerformed
-        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "Página actual: " + paginaActual);
     }//GEN-LAST:event_currentPageActionPerformed
 
     public static void main(String args[]) {
