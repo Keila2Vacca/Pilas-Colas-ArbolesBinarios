@@ -4,15 +4,11 @@ import javax.swing.JOptionPane;
 
 public class Inicio extends javax.swing.JFrame {
 
-    private Pilas<String> historial = new Pilas<>();
-    private Pilas<String> adelante = new Pilas<>();
-    private String paginaActual;
+    Pilas<String> objeto = new Pilas<>();
+    String historial = "";
 
     public Inicio() {
         initComponents();
-        ahead.setEnabled(true);
-        behind.setEnabled(true);
-        paginaActual = "Inicio";
     }
 
     @SuppressWarnings("unchecked")
@@ -97,30 +93,26 @@ public class Inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void behindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_behindActionPerformed
-        if (!historial.isEmpty()) {
-            adelante.push(paginaActual);
-            paginaActual = historial.pop();
-        }else{
-            JOptionPane.showMessageDialog(null, "No hay más páginas atrás");
-        }
+        objeto.pop();
+        historial+="\n"+objeto.peek();
     }//GEN-LAST:event_behindActionPerformed
 
     private void aheadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aheadActionPerformed
-         JOptionPane.showInputDialog("Ingresar nombre del apartado: ");
-         if (!historial.isEmpty()) {
-            historial.push(paginaActual);
-            paginaActual = adelante.pop();
-        }else{
-            JOptionPane.showMessageDialog(null, "No hay más páginas adelante");
-        }
+        String newPage = JOptionPane.showInputDialog("Dirigirse a la pàgina: ");
+        objeto.push(newPage);
+        historial += "\n"+newPage;
     }//GEN-LAST:event_aheadActionPerformed
 
     private void historyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyActionPerformed
-        historial.imprimir();
+        JOptionPane.showMessageDialog(rootPane, historial);
     }//GEN-LAST:event_historyActionPerformed
 
     private void currentPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_currentPageActionPerformed
-        JOptionPane.showMessageDialog(null, "Página actual: " + paginaActual);
+        if (objeto.isEmpty()) {
+            objeto.push("Index");
+            historial += "\n" + "Index";
+        }
+        JOptionPane.showMessageDialog(rootPane, "Te encuentras en: " + objeto.peek());
     }//GEN-LAST:event_currentPageActionPerformed
 
     public static void main(String args[]) {

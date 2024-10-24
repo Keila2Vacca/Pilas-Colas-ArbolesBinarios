@@ -8,7 +8,7 @@ public class Pilas<T> {
     private Object[] elementos;
     private int tope;
     private static final int CAPACIDAD_INICIAL = 10;
-
+    
     // Constructor
     public Pilas() {
         elementos = new Object[CAPACIDAD_INICIAL];
@@ -56,10 +56,10 @@ public class Pilas<T> {
     public int size() {
         return tope + 1;
     }
-
+    
     public void imprimir() {
         if (isEmpty()) {
-            JOptionPane.showMessageDialog(null, "La lista está vacía");
+            JOptionPane.showMessageDialog(null, "La lista esta vacia");
             return;
         }
 
