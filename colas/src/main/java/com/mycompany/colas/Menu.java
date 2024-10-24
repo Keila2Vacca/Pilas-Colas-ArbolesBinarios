@@ -1,15 +1,13 @@
-
 package com.mycompany.colas;
 
 import java.util.LinkedList;
 import java.util.Queue;
 import javax.swing.JOptionPane;
 
-
 public class Menu extends javax.swing.JFrame {
 
-    Queue<Integer> lista = new LinkedList<>();
-    
+    Queue<String> lista = new LinkedList<>();
+
     public Menu() {
         initComponents();
     }
@@ -23,12 +21,11 @@ public class Menu extends javax.swing.JFrame {
         attendNext = new javax.swing.JButton();
         searchNext = new javax.swing.JButton();
         itsEmpty = new javax.swing.JButton();
-        search = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         tittle.setText("Atención al cliente");
-        tittle.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        tittle.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         add.setText("Agregar a la cola");
         add.addActionListener(new java.awt.event.ActionListener() {
@@ -58,13 +55,6 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        search.setText("Consultar");
-        search.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -77,10 +67,6 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(add)
                     .addComponent(itsEmpty))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(search)
-                .addGap(146, 146, 146))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(168, Short.MAX_VALUE)
                 .addComponent(tittle)
@@ -99,51 +85,48 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(searchNext)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(itsEmpty)
-                .addGap(36, 36, 36)
-                .addComponent(search)
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(129, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
-        
+        lista.add(JOptionPane.showInputDialog("Ingrese el nombre del cliente: "));
     }//GEN-LAST:event_addActionPerformed
 
     private void attendNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_attendNextActionPerformed
-        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(attendNext, "Se atendiò a: " + lista.peek());
+        lista.poll();
     }//GEN-LAST:event_attendNextActionPerformed
 
     private void searchNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchNextActionPerformed
-        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(searchNext, "El siguiente cliente a atender es: " + lista.peek());
     }//GEN-LAST:event_searchNextActionPerformed
 
     private void itsEmptyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itsEmptyActionPerformed
-        // TODO add your handling code here:
+        boolean vacio = lista.isEmpty();
+        if (vacio) {
+            JOptionPane.showMessageDialog(itsEmpty, "No hay màs clientes para atender (lista vacia)");
+        } else {
+            JOptionPane.showMessageDialog(itsEmpty, "Aùn hay clientes por atender.");
+        }
     }//GEN-LAST:event_itsEmptyActionPerformed
 
-    private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
-        JOptionPane.showMessageDialog(null, "Los elementos de la lista son: " + lista);
-    }//GEN-LAST:event_searchActionPerformed
-
-   
     public static void main(String args[]) {
-       
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Menu().setVisible(true);
             }
         });
     }
-    
-      
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add;
     private javax.swing.JButton attendNext;
     private javax.swing.JButton itsEmpty;
-    private javax.swing.JButton search;
     private javax.swing.JButton searchNext;
     private javax.swing.JLabel tittle;
     // End of variables declaration//GEN-END:variables
