@@ -3,6 +3,8 @@ package com.mycompany.ejercicioarbolbinario;
 import javax.swing.JOptionPane;
 
 public class EjercicioArbolBinario {
+    
+    //el propuesto por WhatsApp
 
     private Nodo raiz;
 
